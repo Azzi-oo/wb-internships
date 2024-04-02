@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Data</title>
+</head>
+<body>
+    <h1 style="font-family: Calibri">This is the data you requested</h1>
+    <div id="json-data"></div>
+
+    <script>
+        var jsonData = {
+            "name": "Ildarkhan",
+            "age": 20,
+            "city": "Ufa"
+        };
+
+        var jsonStr = JSON.stringify(jsonData, undefined, 2);
+        document.getElementById("json-data").innerText = jsonStr;
+    </script>
+</body>
+</html>

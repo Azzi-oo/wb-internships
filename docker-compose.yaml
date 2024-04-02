@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=my-postgres-container
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=ildarkhan
+      - DB_NAME=gs
+    networks:
+      - app-network
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    # env_file:
+    #   - ./.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_DB: gs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ildarkhan
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
